@@ -1,4 +1,23 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  distDir: "build",
 
-module.exports = nextConfig
+  // images: {
+  //   domains: ["basic-blog.teamrabbil.com"],
+  // },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+        ],
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;
